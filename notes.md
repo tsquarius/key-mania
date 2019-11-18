@@ -1,6 +1,6 @@
 ## Background
 
-``Keyboard Revolution`` is a simple game based off of the popular Dance Dance revolution. 
+``KeyMania`` is a simple game based off of the popular Dance Dance revolution. 
 Arrows flow across the screen (from bottom to top) and when the arrows approach a fixed zone,
 the player needs to press the corresponding arrow key on the keyboard.
 
@@ -34,10 +34,10 @@ The speed at which the arrow flows will depend on the song.
 - TBD - music implementation
 
 ### Objects and purpose
-``game.js`` - game logic will lie here
-``arrows.js`` - handles individual arrows
-``player.js`` - handles player input
-``hit_zone.js`` - defines the hit zone and accuracy
-``game_view.js`` - renders and animates the game
-``score.js`` - renders score for the game
+``game.js`` - game logic will lie here  
+``arrows.js`` - handles individual arrows  
+``player.js`` - handles player input  
+``hit_zone.js`` - defines the hit zone and accuracy  
+``game_view.js`` - renders and animates the game  
+``score.js`` - renders score for the game  
 
