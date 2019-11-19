@@ -1,15 +1,5 @@
 // import Game from './game';
 
-function debounce(func, wait) {
-  let timeout;
-  return function(...args) {
-    const context = this;
-    clearTimeout(timeout);
-    timeout = setTimeout(() => func.apply(context, args), wait);
-  };
-}
-
-
 export default class GameView {
   constructor(game, ctx) {
     this.game = game;
