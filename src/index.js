@@ -27,7 +27,6 @@ document.addEventListener("DOMContentLoaded", () => {
         game.player.hitArrow("right");
         break;
     }
-
   };
 
 });
