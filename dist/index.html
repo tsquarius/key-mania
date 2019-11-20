@@ -2,18 +2,40 @@
 <html lang="en">
 
 <head>
+  <!-- <header name="Access-Control-Allow-Origin" value="*" />
+  <header name="Access-Control-Allow-Headers"
+    value="Origin, Accept, X-Requested-With, Content-Type, If-Modified-Since" />
+  <header name="Access-Control-Allow-Methods" value="GET, OPTIONS, HEAD" /> -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <script src="main.js" ></script>
+  <script src="main.js"></script>
   <link rel="stylesheet" href="styles.css">
   <title>DDR App</title>
 </head>
 
 <body>
-  <canvas id="score"></canvas>
+  <div class="board">
+    <h1>Score:</h1>
+    <h1 id="score"></h1>
+    <h1 id="message"></h1>
+    <button id="play">Start Game</button>
+  </div>
   <canvas id="game-canvas"></canvas>
 
+  <audio id="tropical" src='../assets/Tropical.mp3' type="audio/mpeg"></audio>
+  <audio id="jungle" src='../assets/Jungle.mp3' type="audio/mpeg"></audio>
+  
+  <select id="song-selector">
+    <option disabled selected value>-- Select a Song --</option>
+    <option value="jungle">Jungle</option>
+    <option value="tropical">Tropical</option>
+  </select>
+
+  <button id="music" data-playing="false" role="switch" aria-checked="false">
+    <span>Play/Pause</span>
+  </button>
+  <input type="range" id="volume" min="-1" max="2" value="0.5" step="0.01">
 </body>
 
 </html>

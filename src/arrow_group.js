@@ -2,7 +2,12 @@
 
 export default class ArrowGroup {
   constructor(vel) {
-    this.velocity = vel; 
+    this.velocity = vel;
+    this.queue = [];
+    this.active = [];
+  }
+
+  clearGame() {
     this.queue = [];
     this.active = [];
   }
@@ -26,7 +31,10 @@ export default class ArrowGroup {
 
     if (this.oldestActiveArrow().position[1] < 15) {
       this.triggerRemoveArrow();
+      return true;
     }
+
+    return false;
   }
 
   triggerRemoveArrow() {
@@ -54,5 +62,4 @@ export default class ArrowGroup {
       arrow.render(ctx);
     });
   }
-
 }

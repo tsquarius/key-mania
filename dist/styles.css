@@ -2,6 +2,11 @@ canvas {
   border: 1px solid black;
 }
 
+.board {
+  display: flex;
+  flex-direction: row;
+}
+
 body {
   display: inline-flex;
   flex-direction: column;

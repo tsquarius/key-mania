@@ -41,3 +41,19 @@ The speed at which the arrow flows will depend on the song.
 ``game_view.js`` - renders and animates the game  
 ``score.js`` - renders score for the game  
 
+
+## Music Credits
+––––––––––––––––––––––––––––––
+Track: Jungle Mood — Peyruis [Audio Library Release] 
+Music provided by Audio Library Plus
+Watch: https://youtu.be/AE4AWGTNa-A
+Free Download / Stream: http://alplus.io/JungleMood
+––––––––––––––––––––––––––––––
+
+––––––––––––––––––––––––––––––
+Track: Tropical Flow — BraveLion [Audio Library Release]
+Music provided by Audio Library Plus
+Watch: https://youtu.be/KGAMxmrh-Fw
+Free Download / Stream: https://alplus.io/tropical-flow
+––––––––––––––––––––––––––––––
+

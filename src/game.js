@@ -1,6 +1,7 @@
 import Arrow from "./arrows";
 import ArrowGroup from "./arrow_group";
 import Player from "./player";
+import Score from './score';
 import * as Util from "./utils";
 
 const ArrowDirections = ["left", "right", "up", "down"];
@@ -20,9 +21,10 @@ export default class Game {
       up: new ArrowGroup(this.velocity),
       down: new ArrowGroup(this.velocity)
     };
-    this.player = new Player(this);
-    this.populateArrows();
+    this.score = new Score();
+    this.player = new Player({game: this, score: this.score});
     this.activateArrow = Util.throttle(this.activateArrow.bind(this), 400);
+    this.populateArrows();
   }
 
   populateArrows() {
@@ -63,7 +65,10 @@ export default class Game {
 
   moveArrows(timeDelta) {
     Object.values(this.arrows).forEach(arrows => {
-      arrows.removeOutOfBounds();
+      if (arrows.removeOutOfBounds()) {
+        this.score.addScore('miss');
+      }
+
       arrows.moveActiveArrows(timeDelta);
     });
   }
@@ -71,6 +76,7 @@ export default class Game {
   render(ctx) {
     ctx.clearRect(0, 0, 500, 500);
     this.player.render(ctx);
+    this.score.render();
 
     Object.values(this.arrows).forEach(arrows => {
       arrows.renderActiveArrows(ctx);

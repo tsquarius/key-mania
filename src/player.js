@@ -1,9 +1,7 @@
-const REMOVE_ARROW = ["perfect", "great", "good"];
-
 export default class Player {
-  constructor(game) {
-    this.game = game;
-    // to add combo tracker later;
+  constructor(data) {
+    this.game = data.game;
+    this.score = data.score;
   }
 
   hitArrow(direction) {
@@ -12,18 +10,12 @@ export default class Player {
     console.log(direction);
     if (!target) return;
 
+    // Only consider clicks if it is close to the hit-zone
     if (target.position[1] < 100) {
       const acc = this.checkAccuracy(target.position);
       console.log(acc);
-      
-      // Checks if player kind of hits it
-      if (REMOVE_ARROW.includes(acc)) {
-        this.game.removeArrow(direction);
-      } 
-      //check if player missed it
-      else {
-        this.game.removeArrow(direction);
-      }
+      this.game.removeArrow(direction);
+      this.score.addScore(acc);
     }
   }
 
@@ -32,11 +24,11 @@ export default class Player {
     const diff = Math.abs(60 - top);
 
     console.log(diff);
-    if (diff <= 1) {
+    if (diff <= 2) {
       return "perfect";
-    } else if (diff <= 4) {
+    } else if (diff <= 6) {
       return "great";
-    } else if (diff <= 7) {
+    } else if (diff <= 10) {
       return "good";
     } else {
       return "miss";
