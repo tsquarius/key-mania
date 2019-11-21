@@ -7,9 +7,8 @@ export default class ArrowGroup {
     this.active = [];
   }
 
-  clearGame() {
-    this.queue = [];
-    this.active = [];
+  arrowsLeft() {
+    return this.queue.length + this.active.length; 
   }
 
   addQueue(arrow) {

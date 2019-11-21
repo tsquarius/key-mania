@@ -51,9 +51,7 @@ Free Download / Stream: http://alplus.io/JungleMood
 ––––––––––––––––––––––––––––––
 
 ––––––––––––––––––––––––––––––
-Track: Tropical Flow — BraveLion [Audio Library Release]
-Music provided by Audio Library Plus
-Watch: https://youtu.be/KGAMxmrh-Fw
-Free Download / Stream: https://alplus.io/tropical-flow
+Track: Vacay In Fiji Riddim - Konrad OldMoney
+Music provided by Audio Library
+Watch: https://www.youtube.com/watch?v=XfiSShuMbvc
 ––––––––––––––––––––––––––––––
-

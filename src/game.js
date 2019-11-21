@@ -1,38 +1,32 @@
 import Arrow from "./arrows";
 import ArrowGroup from "./arrow_group";
 import Player from "./player";
-import Score from './score';
+import Score from "./score";
 import * as Util from "./utils";
 
-const ArrowDirections = ["left", "right", "up", "down"];
-
-const DEFAULT_ARROWS = {
-  easy: 200,
-  medium: 300,
-  hard: 400
-};
-
 export default class Game {
-  constructor() {
-    this.velocity = 3;
+  constructor(data) {
     this.arrows = {
-      left: new ArrowGroup(this.velocity),
-      right: new ArrowGroup(this.velocity),
-      up: new ArrowGroup(this.velocity),
-      down: new ArrowGroup(this.velocity)
+      left: new ArrowGroup(data.velocity),
+      right: new ArrowGroup(data.velocity),
+      up: new ArrowGroup(data.velocity),
+      down: new ArrowGroup(data.velocity)
     };
-    this.score = new Score();
-    this.player = new Player({game: this, score: this.score});
-    this.activateArrow = Util.throttle(this.activateArrow.bind(this), 400);
-    this.populateArrows();
+    this.score = new Score(this);
+    this.player = new Player({ game: this, score: this.score });
+    this.activateArrow = Util.throttle(
+      this.activateArrow.bind(this),
+      data.frequency
+    );
+    this.populateArrows(data.arrows);
   }
 
-  populateArrows() {
-    const numArrows = Array.from(new Array(200), (x, i) => i);
+  populateArrows(quantity) {
+    const numArrows = Array.from(new Array(quantity), (x, i) => i);
     numArrows.forEach(x => {
       const direction = Util.randomDirection();
       this.arrows[direction].addQueue(
-        new Arrow({ direction: direction, height: 40 })
+        new Arrow({ direction: direction })
       );
     });
   }
@@ -66,7 +60,7 @@ export default class Game {
   moveArrows(timeDelta) {
     Object.values(this.arrows).forEach(arrows => {
       if (arrows.removeOutOfBounds()) {
-        this.score.addScore('miss');
+        this.score.addScore("miss");
       }
 
       arrows.moveActiveArrows(timeDelta);

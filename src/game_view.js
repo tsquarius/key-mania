@@ -1,24 +1,42 @@
-// add play/pause functionality;
-// Choose song, difficulty?
-// Start button
+// Game over message!
 
-// Need a Time LEFT counter
+import Game from './game';
+
+const SONG_SETTINGS = {
+  jungle: { arrows: 450, velocity: 4.5, frequency: 300 },
+  fiji: { arrows: 230, velocity: 2.8, frequency: 400 }
+};
 
 export default class GameView {
-  constructor(game, ctx) {
-    this.game = game;
+  constructor(ctx, audio) {
+    this.song = null;
+    this.game = null;
     this.ctx = ctx;
     this.play = false;
+    this.audio = audio;
   }
 
+  selectSong(song) {
+    this.play = false;
+    this.song = song;
+    // this.game = new Game(SONG_SETTINGS[song]);
+  }
 
-  // consider running populateArrows when start game
-  // then we can restart by hitting it again
-  // Note I added the clearGame function in the arrowGroup
   start() {
-    if (this.play) {
-      this.lastTime = 0;
-      requestAnimationFrame(this.animate.bind(this));
+    if (!this.song) return;
+    this.play = true;
+    this.game = new Game(SONG_SETTINGS[this.song]);
+    this.lastTime = 0;
+    requestAnimationFrame(this.animate.bind(this));
+  }
+
+  // Game is over if player misses too many OR no more arrows
+  stopGame() {
+    if (this.game.score.missStreak >= 20 || this.game.gameOver()) {
+      this.play = false;
+      document.getElementById("play").textContent = "Play Again";
+      this.audio.stopMusic();
+      this.audio.audioElement.currentTime = 0;
     }
   }
 
@@ -30,10 +48,7 @@ export default class GameView {
       this.game.render(this.ctx);
       this.lastTime = time;
 
-      if (this.game.gameOver()) {
-        this.play = false;
-        document.getElementById("play").textContent = "Play Again";
-      }
+      this.stopGame();
 
       requestAnimationFrame(this.animate.bind(this));
     }

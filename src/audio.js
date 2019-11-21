@@ -3,8 +3,8 @@
 // Noises for when arrow hits
 // Sound level controller
 
-//jungle = 2:37  / 157.92
-//tropical = 3:40 / 220.392
+//jungle = 2:37  / 157.92 =>  115 BPM
+//tropical = 1:39 / 220.392 => 70 BPM
 
 export default class GameAudio {
   constructor() {
@@ -13,8 +13,8 @@ export default class GameAudio {
     this.songId = null;
     this.track = {};
     this.volume = {};
-    this.playButton = document.querySelector("#music");
     window.track = this.track;
+    window.volume = this.volume;
   }
 
   // changes audio element based on dropdown
@@ -47,10 +47,14 @@ export default class GameAudio {
       this.track[songId].connect(gainNode).connect(this.audioCtx.destination);
       this.volume[songId] = gainNode;
     }
+
+    const currentVolume = document.querySelector("#volume").value;
+    this.volume[this.songId].gain.value = currentVolume;
   }
 
-  adjustVolume(controller) {
-    this.volume[this.songId].gain.value = controller.value;
+  adjustVolume(val) {
+    if (!this.songId) return;
+    this.volume[this.songId].gain.value = val;
   }
 
   playMusic(btn) {
@@ -79,7 +83,10 @@ export default class GameAudio {
   }
 
   stopMusic() {
-    this.playButton.dataset.playing = "false";
-    this.audioElement.pause();
+    document.querySelector("#play").dataset.playing = "false";
+    if (this.audioElement) {
+      this.audioElement.pause();
+      this.audioElement.currentTime = 0;
+    }
   }
 }
