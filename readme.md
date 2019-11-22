@@ -1,6 +1,6 @@
 # Key Mania
 
-Link to [live site](http://)
+Link to [live site](https://toantran.io/key-mania/)
 
 ## Background/Overview
 
@@ -59,15 +59,15 @@ Additionally, to add a layer of complexity, the game releases "pair arrows" (two
 
 
 ## Music Credits
-––––––––––––––––––––––––––––––
-Track: Jungle Mood — Peyruis [Audio Library Release] 
-Music provided by Audio Library Plus
-Watch: https://youtu.be/AE4AWGTNa-A
-Free Download / Stream: http://alplus.io/JungleMood
+––––––––––––––––––––––––––––––  
+Track: Jungle Mood — Peyruis [Audio Library Release]  
+Music provided by Audio Library Plus  
+Watch: https://youtu.be/AE4AWGTNa-A  
+Free Download / Stream: http://alplus.io/JungleMood  
 ––––––––––––––––––––––––––––––
 
-––––––––––––––––––––––––––––––
-Track: Vacay In Fiji Riddim - Konrad OldMoney
-Music provided by Audio Library
-Watch: https://www.youtube.com/watch?v=XfiSShuMbvc
-––––––––––––––––––––––––––––––
+––––––––––––––––––––––––––––––  
+Track: Vacay In Fiji Riddim - Konrad OldMoney  
+Music provided by Audio Library  
+Watch: https://www.youtube.com/watch?v=XfiSShuMbvc  
+––––––––––––––––––––––––––––––  
