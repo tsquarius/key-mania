@@ -1,9 +1,4 @@
-const ARROW_IMAGES = {
-  left: "../assets/leftGray50.png",
-  right: "../assets/rightGray50.png",
-  up: "../assets/upGray50.png",
-  down: "../assets/downGray50.png"
-};
+import * as Util from "./utils";
 
 const DEFAULT_POS = {
   left: [37.5, 60],
@@ -12,24 +7,17 @@ const DEFAULT_POS = {
   right: [412.5, 60]
 };
 
-
 export default class Player {
   constructor(data) {
     this.game = data.game;
     this.score = data.score;
     this.images = {
-      left: new Image(),
-      right: new Image(),
-      down: new Image(),
-      up: new Image()
-    }
-    this.loadImageSources();
-  }
-
-  loadImageSources() {
-    Object.keys(this.images).forEach(dir => {
-      this.images[dir].src = ARROW_IMAGES[dir];
-    });
+      left: Util.fixedLeft,
+      right: Util.fixedRight,
+      down: Util.fixedDown,
+      up: Util.fixedUp
+    };
+    this.strikedArrow = null;
   }
 
   hitArrow(direction) {
@@ -39,6 +27,10 @@ export default class Player {
     // Only consider clicks if it is close to the hit-zone
     if (target.position[1] < 90) {
       const acc = this.checkAccuracy(target.position);
+      if (acc != "miss") {
+        target.striked = true;
+        this.strikedArrow = target;
+      }
       this.game.removeArrow(direction);
       this.score.addScore(acc);
     }
@@ -64,5 +56,10 @@ export default class Player {
       const [posX, posY] = DEFAULT_POS[dir];
       ctx.drawImage(this.images[dir], posX, posY);
     });
+
+    if (this.strikedArrow) {
+      this.strikedArrow.move(17);
+      this.strikedArrow.render(ctx);
+    }
   }
 }

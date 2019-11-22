@@ -8,7 +8,7 @@ export default class ArrowGroup {
   }
 
   arrowsLeft() {
-    return this.queue.length + this.active.length; 
+    return this.queue.length + this.active.length;
   }
 
   addQueue(arrow) {
@@ -32,12 +32,11 @@ export default class ArrowGroup {
       this.triggerRemoveArrow();
       return true;
     }
-
     return false;
   }
 
   triggerRemoveArrow() {
-    this.active.shift();
+    this.removed = this.active.shift();
   }
 
   moveActiveArrows(timeDelta) {

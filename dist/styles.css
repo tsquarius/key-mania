@@ -1,20 +1,118 @@
-canvas {
-  border: 1px solid black;
+body {
+  color: white;
+  height: 900px;
+  background: rgb(255, 90, 248);
+  background: linear-gradient(
+    328deg,
+    rgba(255, 90, 248, 1) 18%,
+    rgba(53, 132, 255, 1) 64%
+  );
+}
+#app {
+  font-family: Arial, Helvetica, sans-serif;
+  display: grid;
+  grid-template-columns: 20px repeat(12, [col-start] 1fr) 20px;
+  grid-auto-flow: dense;
 }
 
+canvas {
+  grid-column: col-start 5 / span 4;
+  grid-row: 3 / span 4;
+  border: 1px solid black;
+  margin: auto;
+  background: white;
+}
+
+.title {
+  grid-column: col-start 5 / span 4;
+  grid-row: 1;
+  margin: 20px 0;
+  text-align: center;
+  font-size: 35px;
+}
 .controls {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+  grid-column: col-start / span 3;
+  grid-row: 2;
+  display: inline-flexbox;
+  flex-direction: column;
+  justify-self: end;
+  align-self: end;
+  padding-right: 10px;
+}
+
+.tracker {
+  grid-column: col-start 2 / span 2;
+  grid-row: 4;
+  align-self: center;
 }
 
 .board {
+  grid-row: 2;
+  grid-column: col-start 5 / span 2;
+  padding-left: 5px;
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
 }
 
-body {
-  display: inline-flex;
-  flex-direction: column;
+.messages {
+  grid-column: col-start 7 / span 2;
+  grid-row: 2;
+  padding-left: 10px;
+  display: flex;
+}
+
+.vol-controller {
+  grid-column: 5;
+  grid-row: 6;
+  align-self: end;
+  justify-self: end;
+}
+
+.hide {
+  display: none;
+}
+
+#volume {
+  writing-mode: bt-lr; /* IE */
+  -webkit-appearance: slider-vertical; /* WebKit */
+  width: 8px;
+  height: 175px;
+  padding: 0 5px;
+}
+
+#song-selector {
+  font-size: 25px;
+  border: 1px solid #ccc;
+  width: 100%;
+  border-radius: 3px;
+  overflow: hidden;
+  background: white;
+}
+
+#song-selector select {
+  padding: 5px 8px;
+  width: 130%;
+  border: none;
+  box-shadow: none;
+  background: transparent;
+  background-image: none;
+  -webkit-appearance: none;
+}
+
+#song-selector select:focus {
+  outline: none;
+}
+
+#play {
+  float: right;
+  font-size: 30px;
+  border: none;
+  border-radius: 5px;
+  background: #f7ff5a;
+  padding: 2px 10px;
+  margin: 10px 0;
+}
+
+#play:hover {
+  background: #e1e67f;
+  transition: 0.5s ease;
 }

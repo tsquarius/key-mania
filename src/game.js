@@ -4,13 +4,20 @@ import Player from "./player";
 import Score from "./score";
 import * as Util from "./utils";
 
+const ARROW_IMAGES = {
+  left: Util.leftArrow,
+  right: Util.rightArrow,
+  down: Util.downArrow,
+  up: Util.upArrow
+};
+
 export default class Game {
   constructor(data) {
     this.arrows = {
-      left: new ArrowGroup(data.velocity),
-      right: new ArrowGroup(data.velocity),
-      up: new ArrowGroup(data.velocity),
-      down: new ArrowGroup(data.velocity)
+      left: null,
+      right: null,
+      up: null,
+      down: null
     };
     this.score = new Score(this);
     this.player = new Player({ game: this, score: this.score });
@@ -18,7 +25,14 @@ export default class Game {
       this.activateArrow.bind(this),
       data.frequency
     );
+    this.createArrowGroups(data.velocity);
     this.populateArrows(data.arrows);
+  }
+
+  createArrowGroups(vel) {
+    Object.keys(this.arrows).forEach(dir => {
+      this.arrows[dir] = new ArrowGroup(vel);
+    });
   }
 
   populateArrows(quantity) {
@@ -26,31 +40,58 @@ export default class Game {
     numArrows.forEach(x => {
       const direction = Util.randomDirection();
       this.arrows[direction].addQueue(
-        new Arrow({ direction: direction })
+        new Arrow({ direction: direction, img: ARROW_IMAGES[direction] })
       );
     });
   }
 
-  gameOver() {
+  gameFinished() {
     return Object.values(this.arrows).every(
       el => !el.haveArrowsInQueue() && el.isEmpty()
     );
+  }
+
+  gameLost() {
+    return this.score.missStreak >= 20;
   }
 
   noMoreQueue() {
     return Object.values(this.arrows).every(el => !el.haveArrowsInQueue());
   }
 
-  activateArrow() {
-    if (this.noMoreQueue()) return;
+  activatePairArrows() {
+    const [firstDir, secondDir] = Util.randomPair();
+    const firstArrow = this.arrows[firstDir];
+    const secondArrow = this.arrows[secondDir];
 
+    if (firstArrow.haveArrowsInQueue()) {
+      firstArrow.activateArrow();
+    }
+
+    if (secondArrow.haveArrowsInQueue()) {
+      secondArrow.activateArrow();
+    }
+  }
+
+  activateSingleArrow() {
     let direction = Util.randomDirection();
     while (!this.arrows[direction].haveArrowsInQueue()) {
       direction = Util.randomDirection();
     }
 
-    if (!this.arrows[direction].haveArrowsInQueue()) return;
     this.arrows[direction].activateArrow();
+  }
+
+  activateArrow() {
+    if (this.noMoreQueue()) return;
+    const activateType = Math.floor(Math.random() * 14);
+    if (activateType === 0 || activateType === 1) {
+      this.activatePairArrows();
+    } else if (activateType === 2) {
+      return;
+    } else {
+      this.activateSingleArrow();
+    }
   }
 
   removeArrow(direction) {
@@ -67,9 +108,9 @@ export default class Game {
     });
   }
 
-  render(ctx) {
+  render(ctx, time) {
     ctx.clearRect(0, 0, 500, 500);
-    this.player.render(ctx);
+    this.player.render(ctx, time);
     this.score.render();
 
     Object.values(this.arrows).forEach(arrows => {

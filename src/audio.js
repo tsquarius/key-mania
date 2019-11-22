@@ -1,11 +1,3 @@
-// goals:
-// Play song for the specific session
-// Noises for when arrow hits
-// Sound level controller
-
-//jungle = 2:37  / 157.92 =>  115 BPM
-//tropical = 1:39 / 220.392 => 70 BPM
-
 export default class GameAudio {
   constructor() {
     this.audioCtx = new AudioContext();
@@ -13,11 +5,8 @@ export default class GameAudio {
     this.songId = null;
     this.track = {};
     this.volume = {};
-    window.track = this.track;
-    window.volume = this.volume;
   }
 
-  // changes audio element based on dropdown
   selectTrack(songId) {
     if (this.songId) {
       this.stopMusic();

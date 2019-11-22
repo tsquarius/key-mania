@@ -5,8 +5,6 @@ const SCORE_MAP = {
   miss: 0
 };
 
-// Add combo + score multiplier later
-
 export default class Score {
   constructor(game) {
     this.score = 0;
@@ -26,7 +24,16 @@ export default class Score {
   }
 
   addScore(accuracy) {
-    this.score += SCORE_MAP[accuracy];
+    let multiplier;
+    if (this.combo >= 20) {
+      multiplier = 2;
+    } else if (this.combo >= 10) {
+      multiplier = 1.5;
+    } else {
+      multiplier = 1;
+    }
+
+    this.score += SCORE_MAP[accuracy] * multiplier;
     this.message = accuracy.toString();
     if (this.message === "miss") {
       this.combo = 0;
@@ -47,6 +54,5 @@ export default class Score {
     message.textContent = this.message;
     combo.textContent = this.combo;
     arrows.textContent = this.arrowsLeft();
-    
   }
 }

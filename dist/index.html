@@ -10,36 +10,52 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <script src="main.js"></script>
+  <link rel="stylesheet" href="reset.css">
   <link rel="stylesheet" href="styles.css">
-  <title>DDR App</title>
+  <title>Key Mania</title>
 </head>
 
 <body>
-  <div class="controls">
-    <select id="song-selector">
-      <option disabled selected value>-- Select a Song --</option>
-      <option value="jungle">Jungle (medium)</option>
-      <option value="fiji">Fiji (easy)</option>
-    </select>
+  <main id="app">
+    <header class="title">
+      <h1 class="logo">Key Mania</h1>
+    </header>
 
-    <button id="play" data-playing="false" role="switch" aria-checked="false">
-      Start
-    </button>
-    <input type="range" id="volume" min="-1" max="1" value="0" step="0.01">
-  </div>
+    <div class="controls">
+      <select id="song-selector">
+        <option disabled selected value>-- Select a Song --</option>
+        <option value="jungle">Jungle (medium)</option>
+        <option value="fiji">Fiji (easy)</option>
+      </select>
 
-  <div class="board">
-    <h1>Score:</h1>
-    <h1 id="score"></h1>
-    <h1 id="message"></h1>
-    <h1 id="combo"></h1>
-    <h1 id="arrows"></h1>
-  </div>
-  <canvas id="game-canvas"></canvas>
+      <button id="play" data-playing="false" role="switch" aria-checked="false">
+        Start
+      </button>
 
-  <audio id="fiji" src='../assets/Fiji.mp3' type="audio/mpeg"></audio>
-  <audio id="jungle" src='../assets/Jungle.mp3' type="audio/mpeg"></audio>
+    </div>
 
+    <div class="vol-controller">
+      <input orient="vertical" type="range" id="volume" min="-1" max="1" value="0" step="0.01">
+    </div>
+    <div class="board">
+      <h1>Score:</h1>
+      <h1 id="score"></h1>
+    </div>
+
+    <div class="tracker">
+      <h1>Combo: <span id="combo"></span></h1>
+      <h1>Arrows Left: <span id="arrows"></span></h1>
+    </div>
+
+    <div class="messages">
+      <h1 id="message"></h1>
+      <h1 id="countdown"></h1>
+    </div>
+    <canvas id="game-canvas"></canvas>
+
+    <audio id="fiji" src='../assets/Fiji.mp3' type="audio/mpeg"></audio>
+    <audio id="jungle" src='../assets/Jungle.mp3' type="audio/mpeg"></audio>
+  </main>
 
 </body>
 

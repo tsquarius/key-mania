@@ -31,7 +31,6 @@ The speed at which the arrow flows will depend on the song.
 - Vanilla ``Javascript`` will be used for game logic
 - ``Canvas`` will be used for rendering
 - ``Webpack`` for bundling
-- TBD - music implementation
 
 ### Objects and purpose
 ``game.js`` - game logic will lie here  
