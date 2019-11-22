@@ -15,9 +15,9 @@ body {
   grid-auto-flow: dense;
 }
 
-canvas {
+#game-canvas {
   grid-column: col-start 5 / span 4;
-  grid-row: 3 / span 4;
+  grid-row: 4 / span 4;
   border: 1px solid black;
   margin: auto;
   background: white;
@@ -29,25 +29,46 @@ canvas {
   margin: 20px 0;
   text-align: center;
   font-size: 35px;
+  align-self: center;
 }
-.controls {
+
+.instructions {
   grid-column: col-start / span 3;
+  grid-row: 1 / span 3;
+  margin: 10px;
+  border: 1px solid white;
+  padding: 10px;
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.instructions li {
+  padding-bottom: 5px;
+}
+.instructions img {
+  margin-left: 10px;
+  width: 24px;
+}
+
+.footer {
+  display: flex;
+}
+
+.controls {
+  grid-column: col-start 5 / span 4;
   grid-row: 2;
   display: inline-flexbox;
-  flex-direction: column;
-  justify-self: end;
-  align-self: end;
+  flex-direction: row;
   padding-right: 10px;
 }
 
 .tracker {
-  grid-column: col-start 2 / span 2;
-  grid-row: 4;
+  grid-column: col-start 3 / span 2;
+  grid-row: 5;
   align-self: center;
 }
 
-.board {
-  grid-row: 2;
+.score-board {
+  grid-row: 3;
   grid-column: col-start 5 / span 2;
   padding-left: 5px;
   display: flex;
@@ -55,7 +76,7 @@ canvas {
 
 .messages {
   grid-column: col-start 7 / span 2;
-  grid-row: 2;
+  grid-row: 3;
   padding-left: 10px;
   display: flex;
 }
@@ -71,6 +92,8 @@ canvas {
   display: none;
 }
 
+
+
 #volume {
   writing-mode: bt-lr; /* IE */
   -webkit-appearance: slider-vertical; /* WebKit */
@@ -80,12 +103,15 @@ canvas {
 }
 
 #song-selector {
+  float: left;
   font-size: 25px;
   border: 1px solid #ccc;
-  width: 100%;
+  width: 60%;
   border-radius: 3px;
   overflow: hidden;
   background: white;
+  padding: 2px 10px;
+  margin: 10px 0;
 }
 
 #song-selector select {
@@ -110,6 +136,7 @@ canvas {
   background: #f7ff5a;
   padding: 2px 10px;
   margin: 10px 0;
+  cursor: pointer;
 }
 
 #play:hover {

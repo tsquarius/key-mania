@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="./dist/main.js"></script>
+  <link rel="stylesheet" href="./dist/reset.css">
+  <link rel="stylesheet" href="./dist/styles.css">
+  <title>Key Mania</title>
+</head>
+
+<body>
+  <main id="app">
+    <header class="title">
+      <h1 class="logo">Key Mania</h1>
+    </header>
+
+    <div class="instructions">
+      <h1>Welcome!</h1>
+      <ol>
+        <li>1. To begin please select a song from the drop down and click <b>"Start"</b>.
+        <li>2. When the black arrows reach the gray arrows on top, press the corresponding
+          directional key (or corresponding WASD if you prefer). </li>
+        <li>3. <b>Combo</b> tracks your consecutive successful hits. Higher comob = more points</li>
+      </ol>
+      <hr>
+      <div class="footer">
+        <p>Project by Toan Tran</p>
+        <a href=https://github.com/tsquarius/key-mania> <img src="./GitHub-Mark-64px.png">
+        </a>
+      </div>
+    </div>
+
+    <div class="controls">
+      <select id="song-selector">
+        <option disabled selected value>-- Select a Song --</option>
+        <option value="jungle">Jungle Mood (medium)</option>
+        <option value="fiji">Vacay In Fiji Riddim (easy)</option>
+      </select>
+
+      <button id="play" data-playing="false" role="switch" aria-checked="false">
+        Start
+      </button>
+
+    </div>
+
+    <div class="vol-controller">
+      <input orient="vertical" type="range" id="volume" min="-1" max="1" value="-0.25" step="0.01">
+    </div>
+    <div class="score-board">
+      <h1>Score:</h1>
+      <h1 id="score"></h1>
+    </div>
+
+    <div class="tracker">
+      <h1>Combo: <span id="combo"></span></h1>
+      <h1>Arrows Left: <span id="arrows"></span></h1>
+    </div>
+
+    <div class="messages">
+      <h1 id="message"></h1>
+      <h1 id="countdown"></h1>
+    </div>
+    <canvas id="game-canvas"></canvas>
+
+    <footer class="footer">
+
+    </footer>
+
+    <audio id="fiji" src='./assets/Fiji.mp3' type="audio/mpeg"></audio>
+    <audio id="jungle" src='./assets/Jungle.mp3' type="audio/mpeg"></audio>
+  </main>
+
+</body>
+
+</html>

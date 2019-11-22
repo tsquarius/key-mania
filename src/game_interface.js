@@ -6,7 +6,7 @@ const SONG_SETTINGS = {
 };
 
 const gameOverNoise = document.createElement("audio");
-gameOverNoise.src = "../assets/gameover.wav";
+gameOverNoise.src = "./assets/gameover.wav";
 
 export default class GameInterface {
   constructor(ctx, audio) {
@@ -15,7 +15,7 @@ export default class GameInterface {
     this.ctx = ctx;
     this.play = false;
     this.audio = audio;
-    this.seconds = 3;
+    this.seconds = 4;
   }
 
   selectSong(song) {
@@ -36,7 +36,11 @@ export default class GameInterface {
     const countDownEl = document.getElementById("countdown");
     const timer = setInterval(() => {
       this.seconds--;
-      countDownEl.textContent = this.seconds;
+      if (this.seconds === 3) {
+      countDownEl.textContent = "Starting in...";
+      } else {
+        countDownEl.textContent = this.seconds;
+      }
       if (this.seconds === 0) {
         clearInterval(timer);
         this.audio.stopMusic();
